@@ -1,0 +1,49 @@
+---
+# tasks file for resinstack
+    - name: Install necessary packages
+      yum:
+        state: present
+        name:
+            - gcc
+            - make
+
+    - name: Download resin
+      get_url: url="{{resinurl}}" dest="{{downloaddir}}"
+
+    - name: Unpack archive
+      command: "tar -zxf {{resinarhive}} -C {{downloaddir}} creates={{resindir}}"
+
+    - name: Running ./configure for FFMPEG
+      shell: "{{ item }}"
+      args:
+        chdir: "{{ resindir }}"
+      with_items:
+        - ./configure --enable-64bit --enable-ssl
+
+    - name: Build the default target
+      make:
+        chdir: "{{resindir}}"
+
+    - name: Run 'install' target as root
+      make:
+        chdir: "{{resindir}}"
+        target: install
+      become: yes
+
+    - name: enable external access
+      shell: "echo 'web_admin_external : true' >> {{resindir}}/conf/resin.properties"
+
+    - name: Open tomcat port on the firewall
+      firewalld:
+        port: 8080/tcp
+        permanent: true
+        state: enabled
+        immediate: yes
+      when: ansible_service_mgr == "systemd"
+
+    - name: Start resin service
+      service:
+        enabled: yes
+        name: resin
+        state: started
+

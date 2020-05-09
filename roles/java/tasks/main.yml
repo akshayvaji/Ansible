@@ -1,0 +1,12 @@
+---
+# tasks file for java
+    - name: 'Copying rpm file'
+      copy:
+        src: jdk-8u241-linux-x64.rpm
+        dest: /root/   
+    - name: "Installing Java via using yum"
+      shell: yum localinstall -y /root/jdk-8u241-linux-x64.rpm
+      ignore_errors: yes
+    - name: "Using Alternative"
+      shell: alternatives --install /usr/bin/java java /usr/java/jdk1.8.0_251-amd64/bin/java 200000
+      ignore_errors: yes

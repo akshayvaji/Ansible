@@ -1,0 +1,6 @@
+---
+# vars file for resinstack
+resinurl: http://caucho.com/download/resin-4.0.64.tar.gz
+downloaddir : /usr/local/share
+resinarhive:  "{{downloaddir}}/resin-4.0.64.tar.gz"
+resindir: "{{downloaddir}}/resin-4.0.64"

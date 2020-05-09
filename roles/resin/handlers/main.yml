@@ -1,0 +1,4 @@
+---
+# handlers file for resinstack
+ - name: restart resin
+   service: name=resin state=restarted
