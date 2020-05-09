@@ -1,5 +1,5 @@
 ---
-- name: Tomcat deployment playbook
+- name: Server deployment playbook
   hosts: all       # Inventory hosts group / server to act on
   become: yes               # If to escalate privilege
   become_method: sudo       # Set become method
