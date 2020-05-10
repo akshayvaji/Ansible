@@ -22,6 +22,7 @@ x.x.x.x       # Remote user to act on
 ```
 $ vi serversetup.yml
 ```
+```
 - name: Tomcat deployment playbook
   hosts: tomcat-nodes       # Inventory hosts group / server to act on
   become: yes               # If to escalate privilege
@@ -38,7 +39,7 @@ $ vi serversetup.yml
     - java
     - tomcat
     - resin
-    
+```    
 If you are using non root remote user, then set username and enable sudo:
 ```
 become: yes
