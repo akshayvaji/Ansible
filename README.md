@@ -23,8 +23,8 @@ x.x.x.x       # Remote user to act on
 $ vi serversetup.yml
 ```
 ```
-- name: Tomcat deployment playbook
-  hosts: tomcat-nodes       # Inventory hosts group / server to act on
+- name: Serversetup deployment playbook
+  hosts: ama       # Inventory hosts group / server to act on
   become: yes               # If to escalate privilege
   become_method: sudo       # Set become method
   remote_user: root         # Update username for remote server
