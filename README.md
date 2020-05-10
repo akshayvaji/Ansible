@@ -1,15 +1,23 @@
 # Ansible
+
 Ansible role to install and configure Mysql 5.7, Java(sunjdk), Resin(Port 8080), Tomcat(Port 8081)
 
-How to use this role
-Clone the Project:
+> How to use this role
+
+# Clone the Project:
+
 $ git clone https://github.com/akshayvaji/Ansible.git
+
 $ cd ansible
+
 Update your inventory, e.g:
+
 $ vi inventory.ini
 [ama]
 x.x.x.x       # Remote user to act on
+
 Update variables in playbook file - Set Tomcat version, remote user and Tomcat UI access credentials
+
 $ vim tomcat-setup.yml
 - name: Tomcat deployment playbook
   hosts: tomcat-nodes       # Inventory hosts group / server to act on
@@ -27,6 +35,7 @@ $ vim tomcat-setup.yml
     - java
     - tomcat
     - resin
+    
 If you are using non root remote user, then set username and enable sudo:
 
 become: yes
