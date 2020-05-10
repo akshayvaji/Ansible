@@ -1,0 +1,124 @@
+[root@ip-172-31-43-134 ansible]# ansible-playbook -i inventory.ini serversetup.yml
+
+PLAY [Serversetup deployment playbook] ***************************************************************************************************
+
+TASK [Gathering Facts] **************************************************************************************************************
+The authenticity of host '18.222.151.181 (18.222.151.181)' can't be established.
+ECDSA key fingerprint is SHA256:SqaWggk7mjrrOoLCFoBmXV48dn9OFL4JU5U0fttGN74.
+ECDSA key fingerprint is MD5:e8:11:ea:4c:a8:4b:d5:1e:16:73:43:dd:d5:48:f1:e6.
+Are you sure you want to continue connecting (yes/no)? yes
+[WARNING]: Platform linux on host 18.222.151.181 is using the discovered Python interpreter at /usr/bin/python, but future
+installation of another Python interpreter could change this. See
+https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information.
+ok: [18.222.151.181]
+
+TASK [java : Copying rpm file] ******************************************************************************************************
+changed: [18.222.151.181]
+
+TASK [java : Installing Java via using yum] *****************************************************************************************
+[WARNING]: Consider using the yum module rather than running 'yum'.  If you need to use command because yum is insufficient you can
+add 'warn: false' to this command task or set 'command_warnings=False' in ansible.cfg to get rid of this message.
+changed: [18.222.151.181]
+
+TASK [java : Using Alternative] *****************************************************************************************************
+changed: [18.222.151.181]
+
+TASK [tomcat : Install basic packages] **********************************************************************************************
+changed: [18.222.151.181]
+
+TASK [tomcat : Add tomcat group] ****************************************************************************************************
+changed: [18.222.151.181]
+
+TASK [tomcat : Add "tomcat" user] ***************************************************************************************************
+changed: [18.222.151.181]
+
+TASK [tomcat : Download Tomcat] *****************************************************************************************************
+changed: [18.222.151.181]
+
+TASK [tomcat : Create a tomcat directory] *******************************************************************************************
+changed: [18.222.151.181]
+
+TASK [tomcat : Extract tomcat archive] **********************************************************************************************
+changed: [18.222.151.181]
+
+TASK [tomcat : Copy tomcat service file] ********************************************************************************************
+changed: [18.222.151.181]
+
+TASK [tomcat : Start and enable tomcat] *********************************************************************************************
+changed: [18.222.151.181]
+
+TASK [tomcat : Start and enable firewalld] ******************************************************************************************
+changed: [18.222.151.181]
+
+TASK [tomcat : Open tomcat port on the firewall] ************************************************************************************
+changed: [18.222.151.181]
+
+TASK [tomcat : Set UI access credentials] *******************************************************************************************
+changed: [18.222.151.181]
+
+TASK [tomcat : Change Port to 8081] *************************************************************************************************
+changed: [18.222.151.181]
+
+TASK [tomcat : Allow access to Manager and Host Manager apps from any IP] ***********************************************************
+changed: [18.222.151.181] => (item=/usr/share/tomcat/webapps/host-manager/META-INF/context.xml)
+changed: [18.222.151.181] => (item=/usr/share/tomcat/webapps/manager/META-INF/context.xml)
+
+TASK [mysql57 : upgrade all packages] ***********************************************************************************************
+changed: [18.222.151.181]
+
+TASK [mysql57 : Installing Repo] ****************************************************************************************************
+[WARNING]: Consider using 'become', 'become_method', and 'become_user' rather than running sudo
+changed: [18.222.151.181]
+
+TASK [mysql57 : Installing MySQL 5.7] ***********************************************************************************************
+changed: [18.222.151.181]
+
+TASK [mysql57 : Start the MySQL service] ********************************************************************************************
+changed: [18.222.151.181]
+
+TASK [mysql57 : Find MySQL root password] *******************************************************************************************
+changed: [18.222.151.181]
+
+TASK [mysql57 : debug] **************************************************************************************************************
+ok: [18.222.151.181] => {
+    "mysql_root_pass.stdout": "PJaRijIPj0.r"
+}
+
+TASK [resin : Install necessary packages] *******************************************************************************************
+changed: [18.222.151.181]
+
+TASK [resin : Download resin] *******************************************************************************************************
+changed: [18.222.151.181]
+
+TASK [resin : Unpack archive] *******************************************************************************************************
+[WARNING]: Consider using the unarchive module rather than running 'tar'.  If you need to use command because unarchive is
+insufficient you can add 'warn: false' to this command task or set 'command_warnings=False' in ansible.cfg to get rid of this
+message.
+changed: [18.222.151.181]
+
+TASK [resin : Running ./configure for FFMPEG] ***************************************************************************************
+changed: [18.222.151.181] => (item=./configure --enable-64bit --enable-ssl)
+
+TASK [resin : Build the default target] *********************************************************************************************
+changed: [18.222.151.181]
+
+TASK [resin : Run 'install' target as root] *****************************************************************************************
+changed: [18.222.151.181]
+
+TASK [resin : enable external access] ***********************************************************************************************
+changed: [18.222.151.181]
+
+TASK [resin : Open tomcat port on the firewall] *************************************************************************************
+changed: [18.222.151.181]
+
+TASK [resin : Start resin service] **************************************************************************************************
+[WARNING]: The service (resin) is actually an init script but the system is managed by systemd
+changed: [18.222.151.181]
+
+RUNNING HANDLER [tomcat : restart tomcat] *******************************************************************************************
+changed: [18.222.151.181]
+
+PLAY RECAP **************************************************************************************************************************
+18.222.151.181             : ok=33   changed=31   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+
