@@ -45,3 +45,4 @@ If you are using non root remote user, then set username and enable sudo:
 become: yes
 become_method: sudo
 ```
+> PS: Need to download rpm package of sunjdk from https://www.oracle.com/java/technologies/javase-jdk8-downloads.html and put it under /roles/java/files -- rpm size (171MB) - Unable to upload due to size limit
